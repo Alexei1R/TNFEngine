@@ -8,13 +8,13 @@
 import SwiftUI
 import TNFEngine
 
-
 struct ContentView: View {
     private let engine = TNFEngine()
 
     var body: some View {
         if let engine = engine {
             ViewportView(engine: engine)
+                .ignoresSafeArea(.all)
                 .onAppear {
                     engine.start()
                 }

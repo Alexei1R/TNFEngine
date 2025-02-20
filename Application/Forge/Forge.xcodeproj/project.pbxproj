@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		626D0D252D673A400088E513 /* TNFEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 626D0D242D673A400088E513 /* TNFEngine */; };
+		62EB7E192D6794A200C55305 /* TNFEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 62EB7E182D6794A200C55305 /* TNFEngine */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		626D0D122D6739E70088E513 /* Forge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62EB7E062D67943D00C55305 /* Forge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Forge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		626D0D142D6739E70088E513 /* Forge */ = {
+		62EB7E082D67943D00C55305 /* Forge */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Forge;
 			sourceTree = "<group>";
@@ -23,29 +23,29 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		626D0D0F2D6739E70088E513 /* Frameworks */ = {
+		62EB7E032D67943D00C55305 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				626D0D252D673A400088E513 /* TNFEngine in Frameworks */,
+				62EB7E192D6794A200C55305 /* TNFEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		626D0D092D6739E70088E513 = {
+		62EB7DFD2D67943D00C55305 = {
 			isa = PBXGroup;
 			children = (
-				626D0D142D6739E70088E513 /* Forge */,
-				626D0D132D6739E70088E513 /* Products */,
+				62EB7E082D67943D00C55305 /* Forge */,
+				62EB7E072D67943D00C55305 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		626D0D132D6739E70088E513 /* Products */ = {
+		62EB7E072D67943D00C55305 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				626D0D122D6739E70088E513 /* Forge.app */,
+				62EB7E062D67943D00C55305 /* Forge.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,68 +53,68 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		626D0D112D6739E70088E513 /* Forge */ = {
+		62EB7E052D67943D00C55305 /* Forge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 626D0D202D6739E90088E513 /* Build configuration list for PBXNativeTarget "Forge" */;
+			buildConfigurationList = 62EB7E142D67943E00C55305 /* Build configuration list for PBXNativeTarget "Forge" */;
 			buildPhases = (
-				626D0D0E2D6739E70088E513 /* Sources */,
-				626D0D0F2D6739E70088E513 /* Frameworks */,
-				626D0D102D6739E70088E513 /* Resources */,
+				62EB7E022D67943D00C55305 /* Sources */,
+				62EB7E032D67943D00C55305 /* Frameworks */,
+				62EB7E042D67943D00C55305 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				626D0D142D6739E70088E513 /* Forge */,
+				62EB7E082D67943D00C55305 /* Forge */,
 			);
 			name = Forge;
 			packageProductDependencies = (
-				626D0D242D673A400088E513 /* TNFEngine */,
+				62EB7E182D6794A200C55305 /* TNFEngine */,
 			);
 			productName = Forge;
-			productReference = 626D0D122D6739E70088E513 /* Forge.app */;
+			productReference = 62EB7E062D67943D00C55305 /* Forge.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		626D0D0A2D6739E70088E513 /* Project object */ = {
+		62EB7DFE2D67943D00C55305 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					626D0D112D6739E70088E513 = {
+					62EB7E052D67943D00C55305 = {
 						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
-			buildConfigurationList = 626D0D0D2D6739E70088E513 /* Build configuration list for PBXProject "Forge" */;
+			buildConfigurationList = 62EB7E012D67943D00C55305 /* Build configuration list for PBXProject "Forge" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 626D0D092D6739E70088E513;
+			mainGroup = 62EB7DFD2D67943D00C55305;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				626D0D232D673A400088E513 /* XCLocalSwiftPackageReference "../../../TNFEngine" */,
+				62EB7E172D6794A200C55305 /* XCLocalSwiftPackageReference "../../../TNFEngine" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 626D0D132D6739E70088E513 /* Products */;
+			productRefGroup = 62EB7E072D67943D00C55305 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				626D0D112D6739E70088E513 /* Forge */,
+				62EB7E052D67943D00C55305 /* Forge */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		626D0D102D6739E70088E513 /* Resources */ = {
+		62EB7E042D67943D00C55305 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -124,7 +124,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		626D0D0E2D6739E70088E513 /* Sources */ = {
+		62EB7E022D67943D00C55305 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -134,7 +134,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		626D0D1E2D6739E90088E513 /* Debug */ = {
+		62EB7E122D67943E00C55305 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -197,7 +197,7 @@
 			};
 			name = Debug;
 		};
-		626D0D1F2D6739E90088E513 /* Release */ = {
+		62EB7E132D67943E00C55305 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -253,7 +253,7 @@
 			};
 			name = Release;
 		};
-		626D0D212D6739E90088E513 /* Debug */ = {
+		62EB7E152D67943E00C55305 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -269,7 +269,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -283,7 +282,7 @@
 			};
 			name = Debug;
 		};
-		626D0D222D6739E90088E513 /* Release */ = {
+		62EB7E162D67943E00C55305 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -299,7 +298,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,20 +314,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		626D0D0D2D6739E70088E513 /* Build configuration list for PBXProject "Forge" */ = {
+		62EB7E012D67943D00C55305 /* Build configuration list for PBXProject "Forge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				626D0D1E2D6739E90088E513 /* Debug */,
-				626D0D1F2D6739E90088E513 /* Release */,
+				62EB7E122D67943E00C55305 /* Debug */,
+				62EB7E132D67943E00C55305 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		626D0D202D6739E90088E513 /* Build configuration list for PBXNativeTarget "Forge" */ = {
+		62EB7E142D67943E00C55305 /* Build configuration list for PBXNativeTarget "Forge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				626D0D212D6739E90088E513 /* Debug */,
-				626D0D222D6739E90088E513 /* Release */,
+				62EB7E152D67943E00C55305 /* Debug */,
+				62EB7E162D67943E00C55305 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -337,18 +335,18 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		626D0D232D673A400088E513 /* XCLocalSwiftPackageReference "../../../TNFEngine" */ = {
+		62EB7E172D6794A200C55305 /* XCLocalSwiftPackageReference "../../../TNFEngine" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../../TNFEngine;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		626D0D242D673A400088E513 /* TNFEngine */ = {
+		62EB7E182D6794A200C55305 /* TNFEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TNFEngine;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 626D0D0A2D6739E70088E513 /* Project object */;
+	rootObject = 62EB7DFE2D67943D00C55305 /* Project object */;
 }

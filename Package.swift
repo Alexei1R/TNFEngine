@@ -11,31 +11,34 @@ let package = Package(
     products: [
         .library(
             name: "TNFEngine",
-            targets: ["TNFEngine", "Engine", "Support"])
+            targets: ["TNFEngine", "Engine", "Utilities"])
     ],
     dependencies: [],
     targets: [
-        // Main target that exports the other components
         .target(
             name: "TNFEngine",
-            dependencies: ["Engine", "Support"],
-            path: "Sources/TNFEngine"),
+            dependencies: ["Engine", "Utilities"],
+            path: "Sources/TNFEngine"
+        ),
 
-        // Engine component
         .target(
             name: "Engine",
             dependencies: [],
-            path: "Sources/Engine"),
+            path: "Sources/Engine",
+            resources: [
+                .process("Shaders")
+            ]
+        ),
 
-        // Support component
         .target(
-            name: "Support",
+            name: "Utilities",
             dependencies: [],
-            path: "Sources/Support"),
+            path: "Sources/Utilities"
+        ),
 
-        // Test target
         .testTarget(
             name: "TNFEngineTests",
-            dependencies: ["TNFEngine"]),
+            dependencies: ["TNFEngine"]
+        ),
     ]
 )

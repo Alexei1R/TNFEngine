@@ -16,10 +16,10 @@ public final class Log {
 
         var color: String {
             switch self {
-            case .debug: return "\u{001B}[34m"  // Albastru
-            case .info: return "\u{001B}[32m"  // Verde
-            case .warning: return "\u{001B}[33m"  // Galben
-            case .error: return "\u{001B}[31m"  // Roșu
+            case .debug: return "\u{001B}[34m"
+            case .info: return "\u{001B}[32m"
+            case .warning: return "\u{001B}[33m"
+            case .error: return "\u{001B}[31m"
             }
         }
 
