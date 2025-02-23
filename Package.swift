@@ -11,22 +11,18 @@ let package = Package(
     products: [
         .library(
             name: "TNFEngine",
-            targets: ["TNFEngine", "Engine", "Utilities"])
+            targets: ["TNFEngine", "Utilities"])
     ],
     dependencies: [],
     targets: [
-        .target(
-            name: "TNFEngine",
-            dependencies: ["Engine", "Utilities"],
-            path: "Sources/TNFEngine"
-        ),
 
         .target(
-            name: "Engine",
-            dependencies: [],
-            path: "Sources/Engine",
+            name: "TNFEngine",
+            dependencies: ["Utilities"],
+            path: "Sources/TNFEngine",
             resources: [
-                .process("Shaders")
+                // .process("Assets/")
+                // .copy("Assets/")
             ]
         ),
 
@@ -36,9 +32,9 @@ let package = Package(
             path: "Sources/Utilities"
         ),
 
-        .testTarget(
-            name: "TNFEngineTests",
-            dependencies: ["TNFEngine"]
-        ),
+        // .testTarget(
+        //     name: "TNFEngineTests",
+        //     dependencies: ["TNFEngine"]
+        // ),
     ]
 )

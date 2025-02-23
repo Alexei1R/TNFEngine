@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+
 @main
 struct ForgeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().ignoresSafeArea()
         }
     }
 }
+

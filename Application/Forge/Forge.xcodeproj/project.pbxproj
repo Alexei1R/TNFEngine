@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6208B2862D69FBAA00A05017 /* TNFEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 6208B2852D69FBAA00A05017 /* TNFEngine */; };
 		62EB7E192D6794A200C55305 /* TNFEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 62EB7E182D6794A200C55305 /* TNFEngine */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62EB7E192D6794A200C55305 /* TNFEngine in Frameworks */,
+				6208B2862D69FBAA00A05017 /* TNFEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +73,7 @@
 			name = Forge;
 			packageProductDependencies = (
 				62EB7E182D6794A200C55305 /* TNFEngine */,
+				6208B2852D69FBAA00A05017 /* TNFEngine */,
 			);
 			productName = Forge;
 			productReference = 62EB7E062D67943D00C55305 /* Forge.app */;
@@ -101,7 +104,7 @@
 			mainGroup = 62EB7DFD2D67943D00C55305;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				62EB7E172D6794A200C55305 /* XCLocalSwiftPackageReference "../../../TNFEngine" */,
+				6208B2842D69FBAA00A05017 /* XCLocalSwiftPackageReference "../../../TNFEngine" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 62EB7E072D67943D00C55305 /* Products */;
@@ -267,8 +270,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,8 +300,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,13 +340,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		62EB7E172D6794A200C55305 /* XCLocalSwiftPackageReference "../../../TNFEngine" */ = {
+		6208B2842D69FBAA00A05017 /* XCLocalSwiftPackageReference "../../../TNFEngine" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../../TNFEngine;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6208B2852D69FBAA00A05017 /* TNFEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TNFEngine;
+		};
 		62EB7E182D6794A200C55305 /* TNFEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TNFEngine;
