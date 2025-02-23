@@ -65,6 +65,7 @@ class ViewportCoordinator: NSObject, MTKViewDelegate, UIGestureRecognizerDelegat
     }
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+        engine.resize(to: size)
         Task {
             await engine.handleTouch(at: CGPoint(x: size.width, y: size.height))
         }
@@ -112,11 +113,16 @@ class ViewportCoordinator: NSObject, MTKViewDelegate, UIGestureRecognizerDelegat
     @objc func handlePinch(_ gesture: UIPinchGestureRecognizer) {
         guard let metalView = gesture.view as? MTKView else { return }
         let location = gesture.location(in: metalView)
-        
-        Task {
-            await engine.handleScale(Float(gesture.scale), at: location)
+        if gesture.state == .changed {
+            let delta = 1.0 - Float(gesture.scale) // 0 when no pinch, positive for pinch-in, negative for pinch-out
+            Task {
+                await engine.handleScale(delta, at: location)
+            }
+            gesture.scale = 1.0
         }
     }
+
+
     
     @objc func handleRotation(_ gesture: UIRotationGestureRecognizer) {
         guard let metalView = gesture.view as? MTKView else { return }

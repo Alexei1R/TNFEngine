@@ -1,9 +1,7 @@
 // Copyright (c) 2025 The Noughy Fox
-// 
+//
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-
-
 
 import MetalKit
 import Utilities
@@ -12,26 +10,31 @@ public final class TNFEngine {
     private let device: MTLDevice
     private let moduleStack: ModuleStack
     public let eventDispatcher: EventDispatcher
+    public let renderer : Renderer
+    
 
     public init?() {
         guard let engineDevice = Device.shared?.device,
-              engineDevice.makeCommandQueue() != nil
+            engineDevice.makeCommandQueue() != nil
         else { return nil }
 
         self.device = engineDevice
         self.eventDispatcher = EventDispatcher()
         self.moduleStack = ModuleStack()
-        
-        // Add default modules
-        let input = InputModule()
-        moduleStack.addModule(input)
-        eventDispatcher.subscribe(input)
 
+        // Add default modules
+        self.renderer = Renderer()
+        moduleStack.addModule(renderer)
+        eventDispatcher.subscribe(renderer)
 
     }
 
     public func start() {
         Log.info("TNFEngine started")
+    }
+    
+    public func resize(to size: CGSize){
+        renderer.resize(to: size)
     }
 
     public func addModule(_ module: Module) {
@@ -46,14 +49,34 @@ public final class TNFEngine {
 
     @MainActor
     public func update(view: MTKView) {
-        moduleStack.updateAll(dt: 1.0/60.0)
+        moduleStack.updateAll(dt: 1.0 / 60.0)
+        
+        renderer.draw(in: view)
+        
     }
-    
+
     public func getMetalDevice() -> MTLDevice {
         return device
     }
-    
-    // MARK: - Touch Event Handling
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//NOTE: Callbacks for events
+extension TNFEngine {
+
     public func handleTouch(at point: CGPoint) async {
         let event = TouchEvent(
             type: .tap,
@@ -61,19 +84,19 @@ public final class TNFEngine {
         )
         await eventDispatcher.dispatch(event)
     }
-    
+
     public func handleDrag(from start: CGPoint, to end: CGPoint) async {
         let event = TouchEvent(
             type: .drag,
             touches: [
                 TouchPoint(position: vec2f(Float(start.x), Float(start.y))),
-                TouchPoint(position: vec2f(Float(end.x), Float(end.y)))
+                TouchPoint(position: vec2f(Float(end.x), Float(end.y))),
             ],
             delta: vec2f(Float(end.x - start.x), Float(end.y - start.y))
         )
         await eventDispatcher.dispatch(event)
     }
-    
+
     public func handleTranslate(touches: [CGPoint], delta: CGPoint) async {
         let touchPoints = touches.map {
             TouchPoint(position: vec2f(Float($0.x), Float($0.y)))
@@ -85,7 +108,7 @@ public final class TNFEngine {
         )
         await eventDispatcher.dispatch(event)
     }
-    
+
     public func handleScale(_ scale: Float, at point: CGPoint) async {
         let event = TouchEvent(
             type: .scale,
@@ -94,7 +117,7 @@ public final class TNFEngine {
         )
         await eventDispatcher.dispatch(event)
     }
-    
+
     public func handleRotate(_ angle: Float, at point: CGPoint) async {
         let event = TouchEvent(
             type: .rotate,
@@ -104,8 +127,3 @@ public final class TNFEngine {
         await eventDispatcher.dispatch(event)
     }
 }
-
-
-
-
-
