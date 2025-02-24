@@ -8,15 +8,6 @@
 import SwiftUI
 import Foundation
 
-// Main Data Models remain the same
-struct Layer: Identifiable {
-    let id = UUID()
-    var name: String
-    var isVisible: Bool = true
-    var isLocked: Bool = false
-    var opacity: Double = 1.0
-    var type: String = "Mesh"
-}
 
 struct Tool: Identifiable {
     let id = UUID()
@@ -29,7 +20,6 @@ enum ToolGroup {
     case selection, manipulation, creation, view
 }
 
-// Updated ViewModel with tool selection callback
 class ForgeViewModel: ObservableObject {
     // Callback type definition
     typealias ToolSelectionCallback = (Tool?) -> Void
@@ -37,13 +27,7 @@ class ForgeViewModel: ObservableObject {
     // Private array to store callbacks
     private var toolSelectionCallbacks: [ToolSelectionCallback] = []
     
-    @Published var layers: [Layer] = [
-        Layer(name: "Cube", type: "Mesh"),
-        Layer(name: "Light", type: "Light"),
-        Layer(name: "Camera", type: "Camera")
-    ]
     
-    @Published var selectedLayer: Layer.ID?
     @Published var selectedTool: Tool? {
         didSet {
             notifyToolSelectionCallbacks()
@@ -75,30 +59,6 @@ class ForgeViewModel: ObservableObject {
     private func notifyToolSelectionCallbacks() {
         toolSelectionCallbacks.forEach { callback in
             callback(selectedTool)
-        }
-    }
-    
-    // Existing Layer API functions remain the same
-    func addLayer(name: String, type: String = "Mesh") {
-        let newLayer = Layer(name: name, type: type)
-        layers.append(newLayer)
-        print("Layer added: \(newLayer.name)")
-    }
-    
-    func removeLayer(id: Layer.ID) {
-        layers.removeAll { $0.id == id }
-        print("Layer removed with ID: \(id)")
-    }
-    
-    func selectLayer(id: Layer.ID) {
-        selectedLayer = id
-        print("Layer selected with ID: \(id)")
-    }
-    
-    func toggleLayerVisibility(id: Layer.ID) {
-        if let index = layers.firstIndex(where: { $0.id == id }) {
-            layers[index].isVisible.toggle()
-            print("Layer \(layers[index].name) visibility: \(layers[index].isVisible)")
         }
     }
 }

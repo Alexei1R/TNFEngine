@@ -9,11 +9,13 @@ struct Position: Component {
 }
 
 public final class TNFEngine {
-    private let device: MTLDevice
-    private let moduleStack: ModuleStack
     public let eventDispatcher: EventDispatcher
     public let renderer: Renderer
     public let scene: Scene
+
+    private let device: MTLDevice
+    private let moduleStack: ModuleStack
+    private let materials: MaterialManager = MaterialManager()
 
     public init?() {
         guard let engineDevice = Device.shared?.device,
@@ -42,6 +44,39 @@ public final class TNFEngine {
 
         let girlEntity = scene.create(named: "Girl")
         scene.add(Position(x: 1, y: 1), to: girlEntity)
+
+        let meshEntity = scene.create(named: "Mesh")
+        scene.add(MeshComponent(name: "model"), to: meshEntity)
+
+        let materialHandle = materials.createMaterial(name: "matalic")
+
+        scene.add(MaterialComponent(handle: materialHandle), to: meshEntity)
+
+        // if let assetURL = Bundle.module.url(
+        //     forResource: "staticDefaultMesh", withExtension: "metal")
+        // {
+        //     Log.info("Found asset at: \(assetURL)")
+        // } else {
+        //     Log.error("dont found assest")
+        // }
+
+        //FIXME: Remove this code
+        // if let bundlePath = Bundle.module.resourceURL {
+        //     do {
+        //         let contents = try FileManager.default.contentsOfDirectory(
+        //             at: bundlePath, includingPropertiesForKeys: nil)
+        //         Log.info("Bundle contains: \(contents)")
+        //     } catch {
+        //         Log.error("Failed to read bundle contents: \(error)")
+        //     }
+        // }
+        //
+        // if let metallibURL = Bundle.module.url(forResource: "default", withExtension: "metallib") {
+        //     Log.info("Found metallib at: \(metallibURL)")
+        // } else {
+        //     Log.error("Metallib not found")
+        // }
+
     }
 
     public func resize(to size: CGSize) {
@@ -64,10 +99,29 @@ public final class TNFEngine {
 
         renderer.draw(in: view)
 
-        // var positionView = scene.view(of: Position.self)
-        // positionView.forEach { entity in
-        //     if let position: Position = scene.get(for: entity) {
-        //         Log.error("Entity position: \(position.x), \(position.y)")
+        // var meshView = scene.view(of: MeshComponent.self)
+        // meshView.forEach { entity in
+        //     //     if let position: Position = scene.get(for: entity) {
+        //     //         Log.error("Entity position: \(position.x), \(position.y)")
+        //     //     }
+        //
+        //     if let mesh: MeshComponent = scene.get(for: entity) {
+        //
+        //         // Log.warning("Indices Count \(mesh.meshData?.indices.count ?? -1 )")
+        //     }
+        //
+        // }
+        //
+
+        //FIXME: REMOVE
+        // var view = scene.view(MeshComponent.self, MaterialComponent.self)
+        //
+        // view.forEach { entity in
+        //     if let meshComponent: MeshComponent = scene.get(for: entity),
+        //         let materialComponent: MaterialComponent = scene.get(for: entity)
+        //     {
+        //
+        //         //Bind material , a
         //     }
         // }
 

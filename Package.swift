@@ -21,8 +21,7 @@ let package = Package(
             dependencies: ["Utilities"],
             path: "Sources/TNFEngine",
             resources: [
-                // .process("Assets/")
-                // .copy("Assets/")
+                .process("Assets")
             ]
         ),
 

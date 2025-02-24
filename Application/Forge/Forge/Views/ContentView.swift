@@ -32,14 +32,33 @@ struct ContentView: View {
                     // Background
                     Color.gray
                     
+                    
+                    
+                    // Center content
+                    VStack(spacing: 12) {
+                        if let engine = engine {
+                            ViewportView(engine: engine)
+                                .ignoresSafeArea(.all)
+                                .onAppear {
+                                    engine.start()
+                                }
+                        } else {
+                            Text("Metal is not supported on this device.")
+                                .foregroundColor(.red)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    
+                    
                     // Add Button
                     Button(action: {
-                        viewModel.addLayer(name: "New Layer")
+                        print("Anim")
                     }) {
                         HStack(spacing: 8) {
-                            Image(systemName: "plus.circle.fill")
+                            Image(systemName: "figure.dance")
                                 .font(.system(size: 16, weight: .medium))
-                            Text("Add")
+                            Text("ADD")
                                 .font(.system(size: 14, weight: .medium))
                         }
                         .foregroundColor(.white)
@@ -58,24 +77,12 @@ struct ContentView: View {
                     .buttonStyle(PlainButtonStyle())
                     .padding(16)
                     .transition(.scale.combined(with: .opacity))
-                    
-                    
-                    // Center content
-                    VStack(spacing: 12) {
-                        if let engine = engine {
-                            ViewportView(engine: engine)
-                                .ignoresSafeArea(.all)
-                                .onAppear {
-                                    engine.start()
-                                }
-                        } else {
-                            Text("Metal is not supported on this device.")
-                                .foregroundColor(.red)
-                        }
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
                 .frame(width: viewportWidth, height: geometry.size.height)
+                
+                
+                
+                
                 
                 // Right Panel
                 if viewModel.showLayers {

@@ -17,7 +17,7 @@ struct ViewportView: UIViewRepresentable {
                 view.isPaused = false
                 view.enableSetNeedsDisplay = false
                 view.colorPixelFormat = .bgra8Unorm
-                view.depthStencilPixelFormat = .depth32Float_stencil8
+                view.depthStencilPixelFormat = .depth32Float
                 view.clearColor = MTLClearColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
                 view.delegate = context.coordinator
                 view.isMultipleTouchEnabled = true
