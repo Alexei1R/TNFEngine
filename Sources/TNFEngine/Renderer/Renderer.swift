@@ -94,10 +94,11 @@ public final class Renderer: Module {
         modelMatrix = mat4f.identity
             .rotateDegrees(-90, axis: .x)
             .scale(0.01)
-            .translate(-vec3f.up)
 
         // Load the model from file.
-        guard let path = Bundle.main.path(forResource: "girl", ofType: "usdc") else { fatalError() }
+        guard let path = Bundle.main.path(forResource: "model", ofType: "usdc") else {
+            fatalError()
+        }
         let url = URL(fileURLWithPath: path)
         let model3D = Model3D()
         try! model3D.load(from: url)
@@ -270,8 +271,12 @@ public final class Renderer: Module {
         // --- Second Pass: Render the Outline ---
         // The outline pass draws a slightly enlarged version of the model.
         // It uses a stencil test so that it only colors fragments where the normal model was not rendered.
-        let outlineScale: Float = 1.01
-        let outlineMatrix = modelMatrix.scale(outlineScale)
+        let outlineScale: Float = 1.05
+        // let outlineMatrix = modelMatrix.scale(outlineScale)
+
+        let outlineMatrix = modelMatrix.scale(
+            vec3f(outlineScale * 0.98, outlineScale, outlineScale * 0.955))
+
         var upperLeftOutline = simd_float3x3(
             SIMD3<Float>(
                 outlineMatrix.columns.0.x, outlineMatrix.columns.0.y, outlineMatrix.columns.0.z),
