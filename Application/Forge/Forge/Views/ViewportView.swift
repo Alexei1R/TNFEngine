@@ -11,18 +11,18 @@ struct ViewportView: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> MTKView {
-        let view = MTKView()
-        view.device = engine.getMetalDevice()
-        view.preferredFramesPerSecond = 60
-        view.isPaused = false
-        view.enableSetNeedsDisplay = false
-        view.colorPixelFormat = .bgra8Unorm
-        view.depthStencilPixelFormat = .depth32Float
-        view.clearColor = MTLClearColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
-        view.delegate = context.coordinator
-        view.isMultipleTouchEnabled = true
-        setupGestureRecognizers(for: view, with: context.coordinator)
-        return view
+                let view = MTKView()
+                view.device = engine.getMetalDevice()
+                view.preferredFramesPerSecond = 60
+                view.isPaused = false
+                view.enableSetNeedsDisplay = false
+                view.colorPixelFormat = .bgra8Unorm
+                view.depthStencilPixelFormat = .depth32Float_stencil8
+                view.clearColor = MTLClearColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+                view.delegate = context.coordinator
+                view.isMultipleTouchEnabled = true
+                setupGestureRecognizers(for: view, with: context.coordinator)
+                return view
     }
     
     func updateUIView(_ uiView: MTKView, context: Context) {}
@@ -121,8 +121,8 @@ class ViewportCoordinator: NSObject, MTKViewDelegate, UIGestureRecognizerDelegat
             gesture.scale = 1.0
         }
     }
-
-
+    
+    
     
     @objc func handleRotation(_ gesture: UIRotationGestureRecognizer) {
         guard let metalView = gesture.view as? MTKView else { return }
@@ -134,7 +134,7 @@ class ViewportCoordinator: NSObject, MTKViewDelegate, UIGestureRecognizerDelegat
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                          shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         // Allow simultaneous recognition for two-finger gestures
         if gestureRecognizer is UIPinchGestureRecognizer && otherGestureRecognizer is UIRotationGestureRecognizer {
             return true

@@ -46,7 +46,6 @@ extension mat4f {
             vec4f(-dot(xAxis, eye), -dot(yAxis, eye), -dot(zAxis, eye), 1)
         )
 
-        // Flip Z for Metal's coordinate system
         return viewMatrix
             * mat4f(
                 vec4f(1, 0, 0, 0),
@@ -56,7 +55,6 @@ extension mat4f {
             )
     }
 
-    // Creates perspective projection for Metal's NDC space
     @inlinable
     public static func perspective(fovYRadians: Float, aspect: Float, nearZ: Float, farZ: Float)
         -> mat4f

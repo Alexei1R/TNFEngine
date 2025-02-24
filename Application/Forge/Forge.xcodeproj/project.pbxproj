@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6208B2862D69FBAA00A05017 /* TNFEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 6208B2852D69FBAA00A05017 /* TNFEngine */; };
+		624D746F2D6BC52E00CFBF6C /* TNFEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 624D746E2D6BC52E00CFBF6C /* TNFEngine */; };
 		62EB7E192D6794A200C55305 /* TNFEngine in Frameworks */ = {isa = PBXBuildFile; productRef = 62EB7E182D6794A200C55305 /* TNFEngine */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62EB7E192D6794A200C55305 /* TNFEngine in Frameworks */,
+				624D746F2D6BC52E00CFBF6C /* TNFEngine in Frameworks */,
 				6208B2862D69FBAA00A05017 /* TNFEngine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +76,7 @@
 			packageProductDependencies = (
 				62EB7E182D6794A200C55305 /* TNFEngine */,
 				6208B2852D69FBAA00A05017 /* TNFEngine */,
+				624D746E2D6BC52E00CFBF6C /* TNFEngine */,
 			);
 			productName = Forge;
 			productReference = 62EB7E062D67943D00C55305 /* Forge.app */;
@@ -104,7 +107,7 @@
 			mainGroup = 62EB7DFD2D67943D00C55305;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				6208B2842D69FBAA00A05017 /* XCLocalSwiftPackageReference "../../../TNFEngine" */,
+				624D746D2D6BC52E00CFBF6C /* XCLocalSwiftPackageReference "../../../TNFEngine" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 62EB7E072D67943D00C55305 /* Products */;
@@ -281,7 +284,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thenoghtyfox.Forge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -314,7 +317,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.thenoghtyfox.Forge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = NO;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -346,7 +349,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		6208B2842D69FBAA00A05017 /* XCLocalSwiftPackageReference "../../../TNFEngine" */ = {
+		624D746D2D6BC52E00CFBF6C /* XCLocalSwiftPackageReference "../../../TNFEngine" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../../TNFEngine;
 		};
@@ -354,6 +357,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		6208B2852D69FBAA00A05017 /* TNFEngine */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TNFEngine;
+		};
+		624D746E2D6BC52E00CFBF6C /* TNFEngine */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TNFEngine;
 		};

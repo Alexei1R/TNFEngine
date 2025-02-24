@@ -1,17 +1,19 @@
-// Copyright (c) 2025 The Noughy Fox
-//
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
 import MetalKit
 import Utilities
 
+struct Position: Component {
+    var x, y: Float
+}
+
 public final class TNFEngine {
     private let device: MTLDevice
     private let moduleStack: ModuleStack
     public let eventDispatcher: EventDispatcher
-    public let renderer : Renderer
-    
+    public let renderer: Renderer
+    public let scene: Scene
 
     public init?() {
         guard let engineDevice = Device.shared?.device,
@@ -27,13 +29,22 @@ public final class TNFEngine {
         moduleStack.addModule(renderer)
         eventDispatcher.subscribe(renderer)
 
+        self.scene = Scene()
+
     }
 
     public func start() {
         Log.info("TNFEngine started")
+
+        // NOTE: Testing ecs
+        let modelEntity = scene.create(named: "Model")
+        scene.add(Position(x: 0, y: 0), to: modelEntity)
+
+        let girlEntity = scene.create(named: "Girl")
+        scene.add(Position(x: 1, y: 1), to: girlEntity)
     }
-    
-    public func resize(to size: CGSize){
+
+    public func resize(to size: CGSize) {
         renderer.resize(to: size)
     }
 
@@ -50,9 +61,16 @@ public final class TNFEngine {
     @MainActor
     public func update(view: MTKView) {
         moduleStack.updateAll(dt: 1.0 / 60.0)
-        
+
         renderer.draw(in: view)
-        
+
+        // var positionView = scene.view(of: Position.self)
+        // positionView.forEach { entity in
+        //     if let position: Position = scene.get(for: entity) {
+        //         Log.error("Entity position: \(position.x), \(position.y)")
+        //     }
+        // }
+
     }
 
     public func getMetalDevice() -> MTLDevice {
@@ -60,19 +78,6 @@ public final class TNFEngine {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //NOTE: Callbacks for events
 extension TNFEngine {
