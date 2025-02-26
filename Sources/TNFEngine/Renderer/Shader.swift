@@ -5,6 +5,7 @@
 
 import Foundation
 import Metal
+import Utilities
 
 enum ShaderType {
     case vertex
@@ -71,10 +72,22 @@ class ShaderManager: @unchecked Sendable {
 
     func loadShader(layout: ShaderLayout) throws -> Handle {
         let handle = Handle()
+        Log.error(Bundle.main.bundleIdentifier)
 
-        guard let library = device.makeDefaultLibrary() else {
-            throw ShaderError.libraryCreationFailed
-        }
+        // guard
+        //     let bundleURL = Bundle.main.url(
+        //         forResource: Bundle.main.bundleIdentifier, withExtension: "bundle"),
+        //
+        //     let bundle = Bundle(url: bundleURL),
+        //     let library = try? device.makeDefaultLibrary(bundle: bundle)
+        // else { throw ShaderError.libraryCreationFailed }
+
+        guard
+            let bundleURL = Bundle.main.url(
+                forResource: "TNFEngine_TNFEngine", withExtension: "bundle"),
+            let bundle = Bundle(url: bundleURL),
+            let library = try? device.makeDefaultLibrary(bundle: bundle)
+        else { throw ShaderError.libraryCreationFailed }
 
         let shader = try Shader(device: device, library: library)
 

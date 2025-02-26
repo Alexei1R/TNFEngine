@@ -34,7 +34,19 @@ struct Uniforms {
   float4x4 modelMatrix;
   float3 lightDirection;
   float3 lightColor;
+  float3 cameraPosition;
 };
+
+struct Material {
+  float4 albedo;            // 16 bytes
+  float4 emission;          // 16 bytes
+  float metallic;           // 4 bytes
+  float roughness;          // 4 bytes
+  float clearCoat;          // 4 bytes
+  float clearCoatRoughness; // 4 bytes
+  float transmission;       // 4 bytes
+  float ior;                // 4 bytes
+} __attribute__((packed));
 
 vertex VertexOut vertex_main(const device Vertex *vertices [[buffer(0)]],
                              constant Uniforms &uniforms [[buffer(1)]],
@@ -51,11 +63,15 @@ vertex VertexOut vertex_main(const device Vertex *vertices [[buffer(0)]],
 }
 
 fragment float4 fragment_main(VertexOut in [[stage_in]],
-                              constant Uniforms &uniforms [[buffer(1)]]) {
+                              constant Uniforms &uniforms [[buffer(1)]],
+                              constant Material &material [[buffer(2)]]
+
+) {
+
   float3 N = normalize(in.normal);
   float3 L = normalize(uniforms.lightDirection);
   float diff = max(dot(N, L), 0.0);
   float3 ambient = 0.2 * uniforms.lightColor;
   float3 diffuse = diff * uniforms.lightColor;
-  return float4(ambient + diffuse, 1.0);
+  return float4(ambient + diffuse, 1.0) * material.albedo;
 }

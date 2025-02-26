@@ -163,3 +163,48 @@ extension vec3f {
     public static let right = vec3f(1, 0, 0)
     public static let forward = vec3f(0, 0, 1)  // Metal's coordinate system
 }
+
+extension SIMD2 {
+    @inlinable public var xy: SIMD2<Scalar> { self }
+    @inlinable public var yx: SIMD2<Scalar> { SIMD2(y, x) }
+
+    @inlinable public var xx: SIMD2<Scalar> { SIMD2(x, x) }
+    @inlinable public var yy: SIMD2<Scalar> { SIMD2(y, y) }
+}
+
+extension SIMD3 {
+    // 2D swizzles
+    @inlinable public var xy: SIMD2<Scalar> { SIMD2(x, y) }
+    @inlinable public var xz: SIMD2<Scalar> { SIMD2(x, z) }
+    @inlinable public var yx: SIMD2<Scalar> { SIMD2(y, x) }
+    @inlinable public var yz: SIMD2<Scalar> { SIMD2(y, z) }
+    @inlinable public var zx: SIMD2<Scalar> { SIMD2(z, x) }
+    @inlinable public var zy: SIMD2<Scalar> { SIMD2(z, y) }
+
+    // 3D swizzles
+    @inlinable public var xyz: SIMD3<Scalar> { self }
+    @inlinable public var xzy: SIMD3<Scalar> { SIMD3(x, z, y) }
+    @inlinable public var yxz: SIMD3<Scalar> { SIMD3(y, x, z) }
+    @inlinable public var yzx: SIMD3<Scalar> { SIMD3(y, z, x) }
+    @inlinable public var zxy: SIMD3<Scalar> { SIMD3(z, x, y) }
+    @inlinable public var zyx: SIMD3<Scalar> { SIMD3(z, y, x) }
+}
+
+extension SIMD4 {
+    // 2D swizzles
+    @inlinable public var xy: SIMD2<Scalar> { SIMD2(x, y) }
+    @inlinable public var xz: SIMD2<Scalar> { SIMD2(x, z) }
+    @inlinable public var xw: SIMD2<Scalar> { SIMD2(x, w) }
+    @inlinable public var yz: SIMD2<Scalar> { SIMD2(y, z) }
+    @inlinable public var yw: SIMD2<Scalar> { SIMD2(y, w) }
+    @inlinable public var zw: SIMD2<Scalar> { SIMD2(z, w) }
+
+    // 3D swizzles (common ones)
+    @inlinable public var xyz: SIMD3<Scalar> { SIMD3(x, y, z) }
+    @inlinable public var xyw: SIMD3<Scalar> { SIMD3(x, y, w) }
+    @inlinable public var xzw: SIMD3<Scalar> { SIMD3(x, z, w) }
+    @inlinable public var yzw: SIMD3<Scalar> { SIMD3(y, z, w) }
+
+    // 4D swizzles
+    @inlinable public var xyzw: SIMD4<Scalar> { self }
+}

@@ -12,6 +12,7 @@ struct Uniforms {
     var modelMatrix: mat4f
     var lightDirection: vec3f
     var lightColor: vec3f
+    var cameraPosition: vec3f
 }
 
 public final class Renderer: Module {
@@ -24,6 +25,11 @@ public final class Renderer: Module {
     private let indexCount: Int
     private var camera: Camera
     private var modelMatrix: mat4f
+
+    //NOTE: Material manager
+    private let materialManager = MaterialManager()
+    private var materialHandle: Handle = Handle()
+    private var materialBuffer: MTLBuffer?
 
     public init() {
         // NOTE: Initialize Metal device and setup basic components
@@ -54,6 +60,35 @@ public final class Renderer: Module {
 
         // Create render pipeline - initialize this property directly
         self.pipelineState = Self.createRenderPipeline(device: device)
+
+        createMaterial()
+    }
+
+    private func createMaterial() {
+        materialHandle = materialManager.createMaterial(name: "DefaultMaterial")
+
+        // Set material parameters
+        let material = materialManager.getMaterial(materialHandle)
+
+        material?.setParameter("albedo", MaterialParamValue.vector4(vec4f(0.96, 0.96, 0.98, 1.0)))  // Slightly blue-white
+        material?.setParameter("emission", MaterialParamValue.vector4(vec4f(0.0, 0.0, 0.0, 1.0)))
+        material?.setParameter("metallic", MaterialParamValue.float(1.0))  // Fully metallic
+        material?.setParameter("roughness", MaterialParamValue.float(0.1))  // Very polished
+        material?.setParameter("clearCoat", MaterialParamValue.float(0.0))
+        material?.setParameter("clearCoatRoughness", MaterialParamValue.float(0.0))
+        material?.setParameter("transmission", MaterialParamValue.float(0.0))
+        material?.setParameter("ior", MaterialParamValue.float(1.5))
+
+        Log.info(materialManager.printMaterialDetails(materialHandle))
+        Log.info("Float size \(MemoryLayout<Float>.size)")
+        Log.info("Material size  bytes \(String(describing: material?.getSizeBytes())) ")
+
+        if let material = materialManager.getMaterial(materialHandle),
+            let materialBuffer = material.createUniformBuffer(device: device)
+        {
+            self.materialBuffer = materialBuffer
+        }
+
     }
 
     // NOTE: Setup 3D model and create GPU buffers - changed to static method
@@ -166,8 +201,9 @@ public final class Renderer: Module {
         var uniforms = Uniforms(
             modelViewProjectionMatrix: viewProj * modelMatrix,
             modelMatrix: modelMatrix,
-            lightDirection: vec3f(10, 10, 10),
-            lightColor: vec3f(1, 1, 1)
+            lightDirection: vec3f(10, -10, -10),
+            lightColor: vec3f(1, 1, 1),
+            cameraPosition: camera.position.xyz
         )
 
         // Set render state and draw
@@ -176,6 +212,14 @@ public final class Renderer: Module {
         encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         encoder.setVertexBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
         encoder.setFragmentBytes(&uniforms, length: MemoryLayout<Uniforms>.stride, index: 1)
+
+        // Set material buffer
+        if let materialBuffer = materialBuffer {
+            materialManager.getMaterial(materialHandle)?.updateUniformBuffer(buffer: materialBuffer)
+
+            encoder.setFragmentBuffer(materialBuffer, offset: 0, index: 2)
+        }
+
         encoder.drawIndexedPrimitives(
             type: .triangle,
             indexCount: indexCount,
