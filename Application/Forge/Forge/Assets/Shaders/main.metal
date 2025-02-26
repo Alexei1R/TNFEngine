@@ -1,9 +1,20 @@
 //
-// Created by toor on 2025-02-24.
+// Created by toor on 2025-02-25.
 //
 
 #include <metal_stdlib>
 using namespace metal;
+
+float3x3 inverse3x3(float3x3 m) {
+  float3 a = m[0];
+  float3 b = m[1];
+  float3 c = m[2];
+  float3 r0 = cross(b, c);
+  float3 r1 = cross(c, a);
+  float3 r2 = cross(a, b);
+  float det = dot(a, r0);
+  return float3x3(r0 / det, r1 / det, r2 / det);
+}
 
 struct Vertex {
   float3 position [[attribute(0)]];
@@ -21,7 +32,6 @@ struct VertexOut {
 struct Uniforms {
   float4x4 modelViewProjectionMatrix;
   float4x4 modelMatrix;
-  float3x3 normalMatrix;
   float3 lightDirection;
   float3 lightColor;
 };
@@ -32,7 +42,11 @@ vertex VertexOut vertex_main(const device Vertex *vertices [[buffer(0)]],
   VertexOut out;
   float4 pos = float4(vertices[vid].position, 1.0);
   out.position = uniforms.modelViewProjectionMatrix * pos;
-  out.normal = uniforms.normalMatrix * vertices[vid].normal;
+  float3x3 normalMatrix =
+      float3x3(uniforms.modelMatrix[0].xyz, uniforms.modelMatrix[1].xyz,
+               uniforms.modelMatrix[2].xyz);
+  normalMatrix = transpose(inverse3x3(normalMatrix));
+  out.normal = normalMatrix * vertices[vid].normal;
   return out;
 }
 
@@ -44,9 +58,4 @@ fragment float4 fragment_main(VertexOut in [[stage_in]],
   float3 ambient = 0.2 * uniforms.lightColor;
   float3 diffuse = diff * uniforms.lightColor;
   return float4(ambient + diffuse, 1.0);
-}
-
-fragment float4 fragment_outline_main(VertexOut in [[stage_in]]) {
-  // Render a solid orange color for the outline.
-  return float4(1.0, 0.5, 0.0, 1.0);
 }

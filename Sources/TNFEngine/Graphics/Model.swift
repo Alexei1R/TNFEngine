@@ -115,7 +115,8 @@ public class Model3D {
             mesh.transform = MDLTransform()
             if let attributes = mesh.vertexDescriptor.attributes as? [MDLVertexAttribute] {
                 if !attributes.contains(where: { $0.name == MDLVertexAttributeNormal }) {
-                    mesh.addNormals(withAttributeNamed: MDLVertexAttributeNormal, creaseThreshold: 0.5)
+                    mesh.addNormals(
+                        withAttributeNamed: MDLVertexAttributeNormal, creaseThreshold: 0.5)
                 }
                 if !attributes.contains(where: { $0.name == MDLVertexAttributeTangent }) {
                     mesh.addTangentBasis(
@@ -211,14 +212,16 @@ public class Model3D {
                     indices.append(contentsOf: UnsafeBufferPointer(start: ptr, count: indexCount))
                 case .uint16:
                     let ptr = indexData.assumingMemoryBound(to: UInt16.self)
-                    indices.append(contentsOf: UnsafeBufferPointer(start: ptr, count: indexCount).map {
-                        UInt32($0)
-                    })
+                    indices.append(
+                        contentsOf: UnsafeBufferPointer(start: ptr, count: indexCount).map {
+                            UInt32($0)
+                        })
                 case .uint8:
                     let ptr = indexData.assumingMemoryBound(to: UInt8.self)
-                    indices.append(contentsOf: UnsafeBufferPointer(start: ptr, count: indexCount).map {
-                        UInt32($0)
-                    })
+                    indices.append(
+                        contentsOf: UnsafeBufferPointer(start: ptr, count: indexCount).map {
+                            UInt32($0)
+                        })
                 default:
                     Log.error("Model3D invalid index type")
                     continue
